@@ -10,10 +10,27 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model User {
-  id       String @id @default(uuid())
-  name     String
-  email    String @unique
-  password String
+  id         Int          @id @default(autoincrement())
+  username   String       @unique
+  avatar     String
+  email      String       @unique
+  password   String
+  gender   String
+  village String
+  rank String
+  level Int
+  experience Int
+  yen Int
+  stat1   Int
+  stat2   Int
+  stat3   Int
+  stat4   Int
+  stat5   Int
+  stat6   Int
+  stat7   Int
+  stat8   Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+ 
 }

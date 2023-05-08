@@ -37,32 +37,61 @@ export const authOptions: NextAuthOptions = {
                 return {
                     id: user.id,
                     email: user.email,
-                    name: user.name,
-                    randomKey: "Hey cool",
+                    username: user.username,
+                    // avatar: "https://i.imgur.com/pBAPPAd.gif",
+                    // rank: "4",
+                    // gender: user.gender,
+                    // village: user.village,
+                    // stat1: user.stat1,
+                    // stat2: user.stat2,
+                    // stat3: user.stat3,
+                    // stat4: user.stat4,
+
                 };
             },
         }),
     ],
     callbacks: {
         session: ({ session, token }) => {
-            console.log("Session Callback", { session, token });
+            // console.log("Session Callback", { session, token });
             return {
                 ...session,
                 user: {
                     ...session.user,
                     id: token.id,
-                    randomKey: token.randomKey,
+                    username: token.username,
+                    // avatar: token.avatar,
+                    // randomKey: token.randomKey,
+                    // gender: token.gender,
+                    // rank: token.rank,
+                    // village: token.village,
+                    // stat1: token.stat1,
+                    // stat2: token.stat2,
+                    // stat3: token.stat3,
+                    // stat4: token.stat4,
+
+
                 },
             };
         },
         jwt: ({ token, user }) => {
-            console.log("JWT Callback", { token, user });
+            // console.log("JWT Callback", { token, user });
             if (user) {
                 const u = user as unknown as any;
                 return {
                     ...token,
                     id: u.id,
-                    randomKey: u.randomKey,
+                    username: u.username,
+                    // randomKey: u.randomKey,
+                    // gender: u.gender,
+                    // rank: u.rank,
+                    // avatar: u.avatar,
+                    // village: u.village,
+                    // stat1: u.stat1,
+                    // stat2: u.stat2,
+                    // stat3: u.stat3,
+                    // stat4: u.stat4,
+
                 };
             }
             return token;

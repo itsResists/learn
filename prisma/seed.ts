@@ -10,8 +10,25 @@ async function main() {
         update: {},
         create: {
             email: "admin@admin.com",
-            name: "Admin",
+            username: "Admin",
             password,
+            gender: "Male",
+            village: "Sand",
+            stat1: 10,
+            stat2: 10,
+            stat3: 10,
+            stat4: 10,
+            stat5: 10,
+            stat6: 10,
+            stat7: 10,
+            stat8: 10,
+            level: 1,
+            rank: "2",
+            experience: 0,
+            avatar: "https://i.imgur.com/pBAPPAd.gif",
+            yen: 1000,
+
+
         },
     });
     console.log({ user });

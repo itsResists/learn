@@ -9,6 +9,8 @@ export const RegisterForm = () => {
         username: "",
         email: "",
         password: "",
+        village: "",
+        gender: "",
     });
 
     const onSubmit = async (e: React.FormEvent) => {
@@ -38,20 +40,17 @@ export const RegisterForm = () => {
         }
     };
 
-    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (event: any) => {
         const { name, value } = event.target;
         setFormValues({ ...formValues, [name]: value });
     };
 
     return (
+
         <form
             onSubmit={onSubmit}
-            style={{
-                display: "flex",
-                flexDirection: "column",
-                width: 500,
-                rowGap: 10,
-            }}
+            className="flex flex-col gap-4 w-px-[500px] border-2 border-white rounded-xl p-10"
+            id="register-form"
         >
             <label htmlFor="name">Username</label>
             <input
@@ -60,7 +59,8 @@ export const RegisterForm = () => {
                 name="username"
                 value={formValues.username}
                 onChange={handleChange}
-                style={{ padding: "1rem" }}
+                className="p-4 text-black"
+
             />
             <label htmlFor="email">Email</label>
             <input
@@ -69,7 +69,8 @@ export const RegisterForm = () => {
                 name="email"
                 value={formValues.email}
                 onChange={handleChange}
-                style={{ padding: "1rem" }}
+                className="p-4 text-black"
+
             />
             <label htmlFor="password">Password</label>
             <input
@@ -78,19 +79,39 @@ export const RegisterForm = () => {
                 name="password"
                 value={formValues.password}
                 onChange={handleChange}
-                style={{ padding: "1rem" }}
+                className="p-4 text-black"
+
             />
-            <button
-                style={{
-                    backgroundColor: `${loading ? "#ccc" : "#3446eb"}`,
-                    color: "#fff",
-                    padding: "1rem",
-                    cursor: "pointer",
-                }}
-                disabled={loading}
+
+            {/*  Drop Down Menus */}
+
+            <label htmlFor="gender">Gender</label>
+            <select required className="p-4 text-black" name="gender" form="register-form" value={formValues.gender} onChange={handleChange}>
+                <option value="">Select your gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Non-Binary">Non-Binary</option>
+                <option value="None">None</option>
+            </select>
+
+
+            <label htmlFor="village">Village</label>
+            <select required className="p-4 text-black" name="village" form="register-form" value={formValues.village} onChange={handleChange} >
+                <option value="">Select your village</option>
+                <option value="Sand"> Sand</option>
+                <option value="Leaf"> Leaf</option>
+                <option value="Mist"> Mist</option>
+                <option value="Cloud"> Cloud</option>
+
+            </select>
+
+
+            <button className="p-4 cursor-pointer bg-blue-500 text-white hover:bg-blue-700 rounded-xl"
+                disabled={loading} type="submit"
             >
                 {loading ? "loading..." : "Register"}
             </button>
         </form>
+
     );
 };

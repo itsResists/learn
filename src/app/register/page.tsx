@@ -1,14 +1,8 @@
-import { RegisterForm } from "./form";
+import { RegisterForm } from "./registerform";
 
 export default function RegisterPage() {
     return (
-        <div
-            style={{
-                display: "flex",
-                height: "70vh",
-                justifyContent: "center",
-                alignItems: "center",
-            }}
+        <div className="flex justify-center items-center h-screen"
         >
             <div>
                 <h1>Register</h1>

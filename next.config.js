@@ -2,9 +2,19 @@
 const nextConfig = {
     experimental: {
         appDir: true,
-        serverComponentsExternalPackages: ["@prisma/client", "bcryptjs"]
+    },
+
+    images: {
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'i.imgur.com',
+            },
+        ],
     },
 }
+
+
 
 module.exports = nextConfig
 
