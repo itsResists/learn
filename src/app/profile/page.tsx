@@ -1,44 +1,17 @@
-import { getServerSession } from "next-auth";
-import { authOptions } from "../api/auth/[...nextauth]/route";
-import { prisma } from "../../lib/prisma";
-import { showRank } from "../page";
 import Image from "next/image";
+import { showRank } from "../utils/rank";
+import getUserInfo from "../utils/user"
 
 
 export default async function Profile() {
-    const session = await getServerSession(authOptions);
-    const userID = session?.user?.id;
-    const getUser: any = await prisma.user.findUnique({
-        where: {
-            id: userID,
 
-        },
-        select: {
-            id: true,
-            email: true,
-            username: true,
-            gender: true,
-            village: true,
-            stat1: true,
-            stat2: true,
-            stat3: true,
-            stat4: true,
-            rank: true,
-            experience: true,
-            level: true,
-            stat5: true,
-            stat6: true,
-            stat7: true,
-            stat8: true,
-            avatar: true,
-            yen: true,
+    let experience = parseInt((await getUserInfo()).slice(5, 6));
+    let rank = parseInt((await getUserInfo()).slice(3, 4));
 
-        }
-
-    });
-    const src = getUser?.avatar;
-    const maxLevel = 25 * (getUser?.rank + 1);
-    const currentLevel = getUser?.experience / (maxLevel * 100);
+    const rankDisplay = showRank((await getUserInfo()).slice(3, 4).toString());
+    const src = (await getUserInfo()).slice(1, 2).toString();
+    const maxLevel = 25 * (rank + 1);
+    const currentLevel = experience / (25 * 100);
 
     return (    
         <main style={{ maxWidth: 1200, marginInline: "auto", padding: 20 }}>
@@ -51,31 +24,29 @@ export default async function Profile() {
                         <div className="flex flex-col">
 
                             <p className="p-1">
-                                Username: {getUser?.username}
+                                Username: {(await getUserInfo()).slice(2, 3)}
+
                             </p>
                             <p className="p-1">
-                                Email: {getUser?.email}
+                                Email: {(await getUserInfo()).slice(16, 17)}
                             </p>
                             <p className="p-1">
-                                Gender: {getUser?.gender}
+                                Gender: {(await getUserInfo()).slice(17, 18)}
                             </p>
                             <p className="p-1">
-                                Rank: {showRank(getUser?.rank)}
+                                Rank: {rankDisplay}
                             </p>
                             <p className="p-1">
-                                Village: {getUser?.village}
+                                Village: {(await getUserInfo()).slice(4, 5)}
                             </p>
                             <p className="p-1">
-                                Level: {getUser?.level}
+                                Level: {(await getUserInfo()).slice(6, 7)}
                             </p>
                             <p className="p-1">
-                                Experience: {getUser?.experience}
+                                Experience: {(await getUserInfo()).slice(5, 6)}
                             </p>
                             <p className="p-1">
-                                Yen: {getUser?.yen}
-                            </p>
-                            <p className="p-1">
-                                Rank Number: {getUser?.rank}
+                                Yen: {(await getUserInfo()).slice(15, 16)}
                             </p>
                             <p className="p-1">
                                 Max Level: {maxLevel}
@@ -98,86 +69,84 @@ export default async function Profile() {
                     <div className="border-y-2 border-white border-r-2 p-2">
                         <h1>Placeholder</h1>
                         <p className="p-1">
-                            stat1: {getUser?.stat1}
+                            stat1: {(await getUserInfo()).slice(7, 8)}
                         </p>
                         <p className="p-1">
-                            stat2: {getUser?.stat2}
+                            stat2: {(await getUserInfo()).slice(8, 9)}
                         </p>
                         <p className="p-1">
-                            stat3: {getUser?.stat3}
+                            stat3: {(await getUserInfo()).slice(9, 10)}
+                        </p>
+                        <p className="p-1"> 
+                            stat4: {(await getUserInfo()).slice(10, 11)}
                         </p>
                         <p className="p-1">
-                            stat4: {getUser?.stat4}
+                            stat5: {(await getUserInfo()).slice(11, 12)}
                         </p>
                         <p className="p-1">
-                            stat5: {getUser?.stat5}
+                            stat6: {(await getUserInfo()).slice(12, 13)}
                         </p>
                         <p className="p-1">
-                            stat6: {getUser?.stat6}
+                            stat7: {(await getUserInfo()).slice(13, 14)} 
                         </p>
                         <p className="p-1">
-                            stat7: {getUser?.stat7}
-                        </p>
-                        <p className="p-1">
-                            stat8: {getUser?.stat8}
+                            stat8: {(await getUserInfo()).slice(14, 15)} 
                         </p>
 
                     </div>
                     <div className="border-white border-2">
                         <p className="p-1">
-                            Placeholder: {showRank(getUser?.rank)}
+                            Rank: {rankDisplay}
                         </p>
                         <p className="p-1">
-                            Placeholder: {showRank(getUser?.rank)}
+                            Rank: {rankDisplay}
                         </p>
                         <p className="p-1">
-                            Placeholder: {showRank(getUser?.rank)}
+                            Rank: {rankDisplay}
                         </p>
                         <p className="p-1">
-                            Placeholder: {showRank(getUser?.rank)}
+                            Rank: {rankDisplay}
                         </p>
                         <p className="p-1">
-                            Placeholder: {showRank(getUser?.rank)}
+                            Rank: {rankDisplay}
                         </p>
                         <p className="p-1">
-                            Placeholder: {showRank(getUser?.rank)}
+                            Rank: {rankDisplay}
                         </p>
                         <p className="p-1">
-                            Placeholder: {showRank(getUser?.rank)}
+                            Rank: {rankDisplay}
                         </p>
                         <p className="p-1">
-                            Placeholder: {showRank(getUser?.rank)}
+                            Rank: {rankDisplay}
                         </p>
                     </div>
-                    <div className="p-2 border-white border-b-2 border-r-2">
-                        <div>
-                            <h1>Offense Stats</h1>
-                            <p className="p-1">
-                                stat1: {getUser?.stat1}
-                            </p>
-                            <p className="p-1">
-                                stat2: {getUser?.stat2}
-                            </p>
-                            <p className="p-1">
-                                stat3: {getUser?.stat3}
-                            </p>
-                            <p className="p-1">
-                                stat4: {getUser?.stat4}
-                            </p>
-                        </div>
+                    <div className="border-y-2 border-white border-r-2 p-2">
+                        <h1>Placeholder</h1>
+                        <p className="p-1">
+                            stat1: {(await getUserInfo()).slice(7, 8)}
+                        </p>
+                        <p className="p-1">
+                            stat2: {(await getUserInfo()).slice(8, 9)}
+                        </p>
+                        <p className="p-1">
+                            stat3: {(await getUserInfo()).slice(9, 10)}
+                        </p>
+                        <p className="p-1"> 
+                            stat4: {(await getUserInfo()).slice(10, 11)}
+                        </p>
+                        <p className="p-1">
+                            stat5: {(await getUserInfo()).slice(11, 12)}
+                        </p>
+                        <p className="p-1">
+                            stat6: {(await getUserInfo()).slice(12, 13)}
+                        </p>
+                        <p className="p-1">
+                            stat7: {(await getUserInfo()).slice(13, 14)} 
+                        </p>
+                        <p className="p-1">
+                            stat8: {(await getUserInfo()).slice(14, 15)} 
+                        </p>
 
-                        <p className="p-1">
-                            stat5: {getUser?.stat5}
-                        </p>
-                        <p className="p-1">
-                            stat6: {getUser?.stat6}
-                        </p>
-                        <p className="p-1">
-                            stat7: {getUser?.stat7}
-                        </p>
-                        <p className="p-1">
-                            stat8: {getUser?.stat8}
-                        </p>
                     </div>
 
                 </div>

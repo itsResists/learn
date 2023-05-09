@@ -42,9 +42,6 @@ export const ProfileButton = () => {
 
 
 export const TrainingButton = () => {
-    return <Link href="/training" className="p-4">Training</Link>;
+    return <Link href="/training" className="p-4" >Training</Link>;
 };
 
-export const CharacterButton = () => {
-    return <Link href="/character" className="p-4">Character</Link>;
-};

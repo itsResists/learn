@@ -10,7 +10,7 @@ export const authOptions: NextAuthOptions = {
     },
     providers: [
         CredentialsProvider({
-            name: "Sign in",
+            name: "Username",
             credentials: {
                 email: {
                     label: "Email",
@@ -38,15 +38,6 @@ export const authOptions: NextAuthOptions = {
                     id: user.id,
                     email: user.email,
                     username: user.username,
-                    // avatar: "https://i.imgur.com/pBAPPAd.gif",
-                    // rank: "4",
-                    // gender: user.gender,
-                    // village: user.village,
-                    // stat1: user.stat1,
-                    // stat2: user.stat2,
-                    // stat3: user.stat3,
-                    // stat4: user.stat4,
-
                 };
             },
         }),
@@ -60,16 +51,6 @@ export const authOptions: NextAuthOptions = {
                     ...session.user,
                     id: token.id,
                     username: token.username,
-                    // avatar: token.avatar,
-                    // randomKey: token.randomKey,
-                    // gender: token.gender,
-                    // rank: token.rank,
-                    // village: token.village,
-                    // stat1: token.stat1,
-                    // stat2: token.stat2,
-                    // stat3: token.stat3,
-                    // stat4: token.stat4,
-
 
                 },
             };
@@ -82,15 +63,6 @@ export const authOptions: NextAuthOptions = {
                     ...token,
                     id: u.id,
                     username: u.username,
-                    // randomKey: u.randomKey,
-                    // gender: u.gender,
-                    // rank: u.rank,
-                    // avatar: u.avatar,
-                    // village: u.village,
-                    // stat1: u.stat1,
-                    // stat2: u.stat2,
-                    // stat3: u.stat3,
-                    // stat4: u.stat4,
 
                 };
             }

@@ -1,25 +1,5 @@
-
-import { getServerSession } from "next-auth";
-import { authOptions } from "./api/auth/[...nextauth]/route";
-import Image from "next/image";
-
-const showRank = (rank: string) => {
-  if (rank == "0") {
-    return "Academy Student";
-  } else if (rank == "1") {
-    return "Genin";
-  } else if (rank == "2") {
-    return "Chunin";
-  } else if (rank === "3") {
-    return "Jonin";
-  } else if (rank == "4") {
-    return "Kage";
-  }
-}
-
-
 export default async function Home() {
-  const session = await getServerSession(authOptions);
+
 
   return (
     <main className="grid grid-cols-5  border border-white min-h-[80vh]">
@@ -66,6 +46,3 @@ export default async function Home() {
     </main>
   );
 }
-
-
-export { showRank }; 

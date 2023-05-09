@@ -1,10 +1,5 @@
 'use client'
 import { ChangeEvent, useState } from "react";
-import { showRank } from "../page";
-
-
-
-
 
 export const TrainingForm = () => {
     let [loading, setLoading] = useState(false);
@@ -13,19 +8,33 @@ export const TrainingForm = () => {
 
     });
 
-
     //! Calculates the exp gain from training
     let showExperience = parseInt(formValues.training) * 10
 
     //! Displays the div that shows exp and stat gains.
-    const displayComplete = document.getElementById("training-complete");
+    const displayComplete = document.getElementById("training");
     function trainingComplete() {
         displayComplete!.classList.remove("hidden");
     }
 
+    const energyCheck = document.getElementById("energy");
+    function energyChecker() {
+        if (energy < 10) {
+            energyCheck!.classList.toggle("hidden");
+            setLoading(false);
+        }
+        return;
+    }
+
+    const energy = 22231
+
     const onSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
         setLoading(true);
+        energyChecker();
+        //! Displays the div that shows not enough energy.
+        if (energy >= 10) {
 
         try {
             const res = await fetch("/api/training", {
@@ -41,7 +50,6 @@ export const TrainingForm = () => {
                 alert((await res.json()).message);
                 return;
             }
-            // console.log(JSON.stringify(res.json()));
             else if (res.ok) {
                 console.log("Training Complete");
                 trainingComplete(); //! Displays the area for exp and stat gains.
@@ -53,24 +61,35 @@ export const TrainingForm = () => {
             alert(error.message);
         }
     };
+    };
 
     const handleChange = (event: any) => {
         const { name, value } = event.target;
         setFormValues({ ...formValues, [name]: value });
         displayComplete!.classList.add("hidden"); //! Hides div that shows stat gain after change.
+        energyCheck!.classList.add("hidden"); //! Hides div that shows not enough energy after change.
     };
+
 
 
     return (
 
         <>
+            <div id="training" className="border border-white p-2 mt-10 hidden">
+                <h1>Training Complete! You have gained {formValues.training} stat1 and {showExperience} experience. Please train again!</h1>
+            </div>
+            <div id="energy" className="border border-white p-2 mt-10 hidden">
+                <h1>You do not have enough energy to train currently. Please try again later.</h1>
+            </div>
+            <div>
+                <p>Current Training: {formValues.training}</p>
+                <p>Current Energy: {energy}</p>
+            </div>
             <form
                 onSubmit={onSubmit}
                 className="flex flex-col gap-4 w-px-[500px] border-2 border-white rounded-xl p-10"
                 id="training-form"
             >
-
-
                 {/*  Drop Down Menus */}
                 <label htmlFor="training">Training Length</label>
                 <select required className="p-4 text-black" name="training" form="training-form" value={formValues.training} onChange={handleChange} >
@@ -87,10 +106,6 @@ export const TrainingForm = () => {
                     {loading ? "loading..." : "Train"}
                 </button>
             </form>
-
-            <div id="training-complete" className="border border-white p-2 mt-10 hidden">
-                <h1>Training Complete! You have gained {formValues.training} stat1 and {showExperience} experience. Please train again!</h1>
-            </div>
         </>
     );
 };
