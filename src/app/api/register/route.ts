@@ -42,7 +42,7 @@ export async function POST(req: Request) {
                 username: user.username,
                 email: user.email,
             },
-        }); 
+        });
     } catch (error: any) {
         return new NextResponse(
             JSON.stringify({

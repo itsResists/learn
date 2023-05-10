@@ -1,3 +1,5 @@
+//! Takes the rank string of the user and returns the rank name
+
 const showRank = (rank: string) => {
     if (rank == "null") {
         return "Account Error - Rank == 'null' - No rank found";

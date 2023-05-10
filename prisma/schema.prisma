@@ -21,7 +21,10 @@ model User {
   rank String
   level Int
   experience Int
-  yen Int
+  health Int
+  maxHealth Int
+  energy Int
+  maxEnergy Int
   stat1   Int
   stat2   Int
   stat3   Int
@@ -30,6 +33,7 @@ model User {
   stat6   Int
   stat7   Int
   stat8   Int
+  yen Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
  

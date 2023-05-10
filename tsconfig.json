@@ -29,6 +29,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/app/api/auth/[...nextauth]/route.js"
-  ],
+,
+"src/app/profile/page.jsx"
+],
   "exclude": ["node_modules"]
 }

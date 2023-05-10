@@ -1,6 +1,9 @@
 'use client'
 import { ChangeEvent, useState } from "react";
 
+
+
+
 export const TrainingForm = () => {
     let [loading, setLoading] = useState(false);
     let [formValues, setFormValues] = useState({
@@ -17,24 +20,24 @@ export const TrainingForm = () => {
         displayComplete!.classList.remove("hidden");
     }
 
-    const energyCheck = document.getElementById("energy");
-    function energyChecker() {
-        if (energy < 10) {
-            energyCheck!.classList.toggle("hidden");
-            setLoading(false);
-        }
-        return;
-    }
+    // const energyCheck = document.getElementById("energy");
+    // function energyChecker() {
+    //     if (energy < 10) {
+    //         energyCheck!.classList.toggle("hidden");
+    //         setLoading(false);
+    //     }
+    //     return;
+    // }
 
-    const energy = 22231
+
 
     const onSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
         setLoading(true);
-        energyChecker();
+        // energyChecker();
         //! Displays the div that shows not enough energy.
-        if (energy >= 10) {
+        // if (energy >= 10) {
 
         try {
             const res = await fetch("/api/training", {
@@ -61,13 +64,13 @@ export const TrainingForm = () => {
             alert(error.message);
         }
     };
-    };
+    // };
 
     const handleChange = (event: any) => {
         const { name, value } = event.target;
         setFormValues({ ...formValues, [name]: value });
         displayComplete!.classList.add("hidden"); //! Hides div that shows stat gain after change.
-        energyCheck!.classList.add("hidden"); //! Hides div that shows not enough energy after change.
+        // energyCheck!.classList.add("hidden"); //! Hides div that shows not enough energy after change.
     };
 
 
@@ -83,7 +86,7 @@ export const TrainingForm = () => {
             </div>
             <div>
                 <p>Current Training: {formValues.training}</p>
-                <p>Current Energy: {energy}</p>
+
             </div>
             <form
                 onSubmit={onSubmit}

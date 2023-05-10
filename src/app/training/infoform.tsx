@@ -1,6 +1,3 @@
-import { getServerSession } from "next-auth";
-import { authOptions } from "../api/auth/[...nextauth]/route";
-import { prisma } from "../../lib/prisma";
 import Image from "next/image";
 import { showRank } from "../utils/rank";
 import getUserInfo from "../utils/user"
@@ -18,12 +15,13 @@ export default async function UserInfo() {
                     <p> Level: {(await getUserInfo()).slice(6, 7)}</p>
                     <p>   Experience: {(await getUserInfo()).slice(5, 6)}</p>
                     <p>Village: {(await getUserInfo()).slice(4, 5)}</p>
+                    <p> Energy: {(await getUserInfo()).slice(9, 10)} / {(await getUserInfo()).slice(10, 11)} </p>
                 </div>
                 <div>
                     <div>
                         <Image
                             src={src}
-                            alt="test"
+                            alt="User Avatar"
                             width={250}
                             height={250}
                         />
@@ -34,18 +32,33 @@ export default async function UserInfo() {
             <h1>Current Stats (This does not currently update without page refresh)</h1>
             <div className="grid grid-cols-2 border-2 border-white rounded-xl">
                 <div className="p-4">
-                    <p className="px-1">Stat1: {(await getUserInfo()).slice(7, 8)}</p>
-                    <p className="px-1">Stat3: {(await getUserInfo()).slice(8, 9)}</p>
-                    <p className="px-1">Stat2: {(await getUserInfo()).slice(9, 10)}</p>
-                    <p className="px-1">Stat4: {(await getUserInfo()).slice(10, 11)}</p>
+                    <p className="">
+                        stat1: {(await getUserInfo()).slice(11, 12)}
+                    </p>
+                    <p className="">
+                        stat2: {(await getUserInfo()).slice(12, 13)}
+                    </p>
+                    <p className="">
+                        stat3: {(await getUserInfo()).slice(13, 14)}
+                    </p>
+                    <p className="">
+                        stat4: {(await getUserInfo()).slice(14, 15)}
+                    </p>
 
                 </div>
                 <div className="border-l-2 border-white p-4">
-                    <p className="px-1">Stat5: {(await getUserInfo()).slice(11, 12)}</p>
-                    <p className="px-1">Stat6: {(await getUserInfo()).slice(12, 13)}</p>
-                    <p className="px-1">Stat7: {(await getUserInfo()).slice(13, 14)} </p>
-                    <p className="px-1">Stat8: {(await getUserInfo()).slice(14, 15)} </p>
-
+                    <p className="">
+                        stat5: {(await getUserInfo()).slice(15, 16)}
+                    </p>
+                    <p className="">
+                        stat6: {(await getUserInfo()).slice(16, 17)}
+                    </p>
+                    <p className="">
+                        stat7: {(await getUserInfo()).slice(17, 18)}
+                    </p>
+                    <p className="">
+                        stat8: {(await getUserInfo()).slice(18, 19)}
+                    </p>
 
                 </div>
 
