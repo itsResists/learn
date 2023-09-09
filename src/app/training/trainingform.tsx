@@ -3,8 +3,10 @@ import { ChangeEvent, useState } from "react";
 
 
 
-
 export const TrainingForm = () => {
+
+
+
     let [loading, setLoading] = useState(false);
     let [formValues, setFormValues] = useState({
         training: "",
@@ -17,7 +19,7 @@ export const TrainingForm = () => {
     //! Displays the div that shows exp and stat gains.
     const displayComplete = document.getElementById("training");
     function trainingComplete() {
-        displayComplete!.classList.remove("hidden");
+        displayComplete.classList.remove("hidden");
     }
 
     // const energyCheck = document.getElementById("energy");

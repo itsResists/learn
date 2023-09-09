@@ -14,6 +14,26 @@ export async function POST(req: Request) {
         };
         const hashed_password = await hash(password, 12);
 
+        if (!username || !password) {
+            return new NextResponse(
+                JSON.stringify({
+                    status: "error",
+                    message: "Please fill out all fields",
+                }),
+                { status: 400 }
+            );
+        }
+        const exist = await prisma.user.findUnique({
+            where: {
+                username
+            }
+        });
+
+
+        if (exist) {
+            throw new Error('User already exists')
+        }
+
         const user = await prisma.user.create({
             data: {
                 username,
@@ -34,6 +54,10 @@ export async function POST(req: Request) {
                 experience: 0,
                 yen: 1000,
                 avatar: "https://i.imgur.com/pBAPPAd.gif",
+                health: 100,
+                maxHealth: 100,
+                energy: 100,
+                maxEnergy: 100,
             },
         });
 

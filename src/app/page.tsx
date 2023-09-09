@@ -42,7 +42,18 @@ export default async function Home() {
           </div>
         </div>
       </div>
-      <div />
+      <div>
+        <div>
+          <h1 className="text-2xl font-extrabold p-4">Top Players</h1>
+          <div className="border border-white text-xl pl-10 ">
+            <ol>
+              <li>Jorge</li>
+              <li>John</li>
+              <li>Jenny</li>
+            </ol>
+          </div>
+        </div>
+      </div>
     </main>
   );
 }

@@ -1,5 +1,6 @@
 import './globals.css'
 import Navbar from '../components/navbar'
+import { SessionProvider } from '../lib/providers'
 
 export const metadata = {
   title: 'Create Next App',
@@ -14,11 +15,14 @@ export default function RootLayout({
   return (
     <html lang="en">
 
+      <SessionProvider>
+
       <body>
         <Navbar />
         {children}
         <Navbar />
       </body>
+      </SessionProvider>
     </html>
   )
 }

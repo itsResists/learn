@@ -1,18 +1,22 @@
-export default function loading() {
+
+
+import { TrainingForm } from './trainingform';
+
+
+export default function Training() {
+
     return (
         <>
             <div className="flex justify-center items-center min-h-[80vh]"
             >
                 <div>
                     <div className='my-2'>
-                        <p className="text-3xl font-extrabold">
-                            Loading training page...
-                        </p>
-                    </div>
 
+                    </div>
+                    <TrainingForm />
 
                 </div>
             </div>
         </>
-    )
+    );
 }

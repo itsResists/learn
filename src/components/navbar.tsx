@@ -5,7 +5,8 @@ import {
     ProfileButton,
     RegisterButton,
     TrainingButton,
-    HomeButton
+    HomeButton,
+    ChatButton
 } from './buttons.component';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '../app/api/auth/[...nextauth]/route';
@@ -30,6 +31,7 @@ export default async function Navbar() {
                 <HomeButton />
                 <ProfileButton />
                 <TrainingButton />
+                <ChatButton />
                 <LogoutButton />
         </div>
     )
